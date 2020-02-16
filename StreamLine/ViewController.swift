@@ -17,6 +17,7 @@ class ViewController: UIViewController {
    @IBOutlet weak var searchField: UITextField!
    @IBOutlet weak var searchFieldView: UIView!
    @IBOutlet weak var pieChartView: PieChart!
+   @IBOutlet weak var pieChart2: PieChart!
    
    let highPriceSet = Set<String>(["Netflix", "Amazon Instant Video", "Amazon Prime Video"]) //
    
@@ -39,12 +40,14 @@ class ViewController: UIViewController {
          DispatchQueue.main.async {
             self.tableView.reloadData()
             self.updateSumsData()
-            self.updatePieChartResults()
             //self.drawPieChart(self.pieChartResults)
          }
       }
       
-      //pieChartView.models = [ PieSliceModel(value: 1, color: UIColor.init(red: 57/256, green: 57/256, blue: 63/256, alpha: 1), obj: "")]
+      pieChart2.models = [ PieSliceModel(value: 1, color: UIColor.init(red: 57/256, green: 57/256, blue: 63/256, alpha: 1), obj: "")]
+   }
+   @IBAction func jyhgjh(_ sender: Any) {
+      self.updatePieChartResults()
    }
    
    @IBAction func searchAction(_ sender: Any) {
@@ -84,6 +87,7 @@ class ViewController: UIViewController {
    func drawPieChart(_ models: [PieSliceModel]) {
       print(models)
       pieChartView.models = models
+      pieChartView.setNeedsDisplay()
       var textLayerSettings = PieLineTextLayerSettings()
       textLayerSettings.lineColor = UIColor.white
       textLayerSettings.label.textColor = UIColor.white
